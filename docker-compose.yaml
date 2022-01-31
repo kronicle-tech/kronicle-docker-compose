@@ -3,13 +3,14 @@ services:
   kronicle-app:
     image: ghcr.io/kronicle-tech/kronicle-app:0.1.95
     environment:
-      SERVER_SIDE_SERVICE_BASE_URL: kronicle-service:8090
+      CLIENT_SIDE_SERVICE_BASE_URL: http://localhost:8090
+      SERVER_SIDE_SERVICE_BASE_URL: http://kronicle-service:8090
     ports:
       - "3000:3000"
     depends_on:
-      - kroncile-service
+      - kronicle-service
 
-  kroncile-service:
+  kronicle-service:
     image: ghcr.io/kronicle-tech/kronicle-service:0.1.95
     environment:
       OPENAPI_SPEC_CLEAR_EXISTING_SERVERS: "true"
