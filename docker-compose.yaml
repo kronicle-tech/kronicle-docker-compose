@@ -1,0 +1,47 @@
+version: "2.4"
+services:
+  kronicle-app:
+    image: ghcr.io/kronicle-tech/kronicle-app:0.1.95
+    environment:
+      SERVER_SIDE_SERVICE_BASE_URL: kronicle-service:8090
+    ports:
+      - "3000:3000"
+    depends_on:
+      - kroncile-service
+
+  kroncile-service:
+    image: ghcr.io/kronicle-tech/kronicle-service:0.1.95
+    environment:
+      OPENAPI_SPEC_CLEAR_EXISTING_SERVERS: "true"
+      OPENAPI_SPEC_SERVERS_0_DESCRIPTION: The demo instance of Kronicle Service
+      REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
+      REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
+      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
+      KEY_SOFTWARE_RULES_0_SOFTWARE_NAME_PATTERN: "^gradle-wrapper$$"
+      KEY_SOFTWARE_RULES_0_NAME: "Gradle"
+      KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
+      KEY_SOFTWARE_RULES_1_NAME: "Spring Boot"
+      KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN: "^com.google.guava:guava$$"
+      KEY_SOFTWARE_RULES_2_NAME: "Guava"
+      KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN: "^io.zipkin.brave:brave$$"
+      KEY_SOFTWARE_RULES_3_NAME: "Zipkin Brave"
+      KEY_SOFTWARE_RULES_4_SOFTWARE_NAME_PATTERN: "^io.dropwizard:dropwizard-core$$"
+      KEY_SOFTWARE_RULES_4_NAME: "Dropwizard"
+      KEY_SOFTWARE_RULES_5_SOFTWARE_NAME_PATTERN: "^org.mongodb:(mongodb-driver|mongo-java-driver)$$"
+      KEY_SOFTWARE_RULES_5_NAME: "MongoDB Driver"
+      KEY_SOFTWARE_RULES_6_SOFTWARE_NAME_PATTERN: "^com.fasterxml.jackson.core:"
+      KEY_SOFTWARE_RULES_6_NAME: "Jackson"
+      KEY_SOFTWARE_RULES_7_SOFTWARE_NAME_PATTERN: "^org.springframework.cloud:spring-cloud-dependencies$$"
+      KEY_SOFTWARE_RULES_7_NAME: "Spring Cloud"
+      KEY_SOFTWARE_RULES_8_SOFTWARE_NAME_PATTERN: "^org.projectlombok:lombok$$"
+      KEY_SOFTWARE_RULES_8_NAME: "Lombok"
+      KEY_SOFTWARE_RULES_9_SOFTWARE_NAME_PATTERN: "^org.jetbrains.kotlin:kotlin-bom$$"
+      KEY_SOFTWARE_RULES_9_NAME: "Kotlin"
+      KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN: "^io.micronaut:micronaut-bom$$"
+      KEY_SOFTWARE_RULES_10_NAME: "Micronaut"
+      SONARQUBE_BASE_URL: https://sonarcloud.io
+      SONARQUBE_ORGANIZATIONS_0: kronicle-tech
+    ports:
+      - "8090:8090"
+      - "8091:8091"
