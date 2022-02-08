@@ -5,9 +5,6 @@ services:
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
     #image: public.ecr.aws/v1k6a4j2/kronicle-app:0.1.105-pre-release
     environment:
-      # URL of kronicle-service, when accessed from a web browser
-      CLIENT_SIDE_SERVICE_BASE_URL: http://localhost:8090
-
       # URL of kronicle-service, when called server-side from this web app
       SERVER_SIDE_SERVICE_BASE_URL: http://kronicle-service:8090
     ports:
@@ -20,21 +17,23 @@ services:
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
     #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.105-pre-release
     environment:
-      # Increased logging (Optional)
-      LOGGING_LEVEL_TECH_KRONICLE: DEBUG
-
-      # GitLab (Optional)
-      REPO_FINDERS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
-      REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
-      REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: ${GITLAB_ACCESS_TOKEN}
-
       # GitHub (Optional)
       REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
       REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
       REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
       REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
 
+      # GitLab (Optional)
+      #REPO_FINDERS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
+      #REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
+      #REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
+
+      # Increased logging (Optional)
+      #LOGGING_LEVEL_TECH_KRONICLE: DEBUG
+
       # Key Software Rules (Optional)
+      # The SOFTWARE_NAME_PATTERN environment variables contain regex patterns.  The `$$` is Docker Compose syntax for
+      # escaping a `$` character
       KEY_SOFTWARE_RULES_0_SOFTWARE_NAME_PATTERN: "^gradle-wrapper$$"
       KEY_SOFTWARE_RULES_0_NAME: "Gradle"
       KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
@@ -57,6 +56,20 @@ services:
       KEY_SOFTWARE_RULES_9_NAME: "Kotlin"
       KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN: "^io.micronaut:micronaut-bom$$"
       KEY_SOFTWARE_RULES_10_NAME: "Micronaut"
+      KEY_SOFTWARE_RULES_11_SOFTWARE_NAME_PATTERN: "^aws-cdk$$"
+      KEY_SOFTWARE_RULES_11_NAME: "AWS CDK"
+      KEY_SOFTWARE_RULES_12_SOFTWARE_NAME_PATTERN: "^aws-sdk$$"
+      KEY_SOFTWARE_RULES_12_NAME: "AWS SDK"
+      KEY_SOFTWARE_RULES_13_SOFTWARE_NAME_PATTERN: "^vue$$"
+      KEY_SOFTWARE_RULES_13_NAME: "Vue"
+      KEY_SOFTWARE_RULES_14_SOFTWARE_NAME_PATTERN: "^nuxt$$"
+      KEY_SOFTWARE_RULES_14_NAME: "Nuxt"
+      KEY_SOFTWARE_RULES_15_SOFTWARE_NAME_PATTERN: "^react$$"
+      KEY_SOFTWARE_RULES_15_NAME: "React"
+      KEY_SOFTWARE_RULES_16_SOFTWARE_NAME_PATTERN: "^next$$"
+      KEY_SOFTWARE_RULES_16_NAME: "Next.js"
+      KEY_SOFTWARE_RULES_17_SOFTWARE_NAME_PATTERN: "^@angular/core$$"
+      KEY_SOFTWARE_RULES_17_NAME: "Angular"
 
       # SonarQube (Optional)
       SONARQUBE_BASE_URL: https://sonarcloud.io
