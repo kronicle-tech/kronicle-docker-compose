@@ -17,6 +17,8 @@ services:
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
     #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.127
     environment:
+      SPRING_PROFILES_ACTIVE: docker-compose
+
       # GitHub (Optional)
       REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
       REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
