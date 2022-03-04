@@ -1,9 +1,9 @@
 version: "2.4"
 services:
   kronicle-app:
-    image: ghcr.io/kronicle-tech/kronicle-app:0.1.143
+    image: ghcr.io/kronicle-tech/kronicle-app:0.1.154-pre-release
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
-    #image: public.ecr.aws/v1k6a4j2/kronicle-app:0.1.143
+    #image: public.ecr.aws/v1k6a4j2/kronicle-app:0.1.154-pre-release
     environment:
       # URL of kronicle-service, when called server-side from this web app
       SERVER_SIDE_SERVICE_BASE_URL: http://kronicle-service:8090
@@ -13,71 +13,40 @@ services:
       - kronicle-service
 
   kronicle-service:
-    image: ghcr.io/kronicle-tech/kronicle-service:0.1.143
+    image: ghcr.io/kronicle-tech/kronicle-service:0.1.154-pre-release
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
-    #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.143
+    #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.154-pre-release
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
 
       # GitHub (Optional)
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
-      REPO_FINDERS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
+      PLUGINS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
+      PLUGINS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
       REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
       REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
-
-      # GitLab (Optional)
-      #REPO_FINDERS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
-      #REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
-      #REPO_FINDERS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
 
       # Increased logging (Optional)
       #LOGGING_LEVEL_TECH_KRONICLE: DEBUG
 
+      # GitLab (Optional)
+      #PLUGINS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
+      #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
+      #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
+
       # Key Software Rules (Optional)
       # The SOFTWARE_NAME_PATTERN environment variables contain regex patterns.  The `$$` is Docker Compose syntax for
       # escaping a `$` character
-      KEY_SOFTWARE_RULES_0_SOFTWARE_NAME_PATTERN: "^gradle-wrapper$$"
-      KEY_SOFTWARE_RULES_0_NAME: "Gradle"
-      KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
-      KEY_SOFTWARE_RULES_1_NAME: "Spring Boot"
-      KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN: "^com.google.guava:guava$$"
-      KEY_SOFTWARE_RULES_2_NAME: "Guava"
-      KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN: "^io.zipkin.brave:brave$$"
-      KEY_SOFTWARE_RULES_3_NAME: "Zipkin Brave"
-      KEY_SOFTWARE_RULES_4_SOFTWARE_NAME_PATTERN: "^io.dropwizard:dropwizard-core$$"
-      KEY_SOFTWARE_RULES_4_NAME: "Dropwizard"
-      KEY_SOFTWARE_RULES_5_SOFTWARE_NAME_PATTERN: "^com.fasterxml.jackson.core:"
-      KEY_SOFTWARE_RULES_5_NAME: "Jackson"
-      KEY_SOFTWARE_RULES_6_SOFTWARE_NAME_PATTERN: "^org.springframework.cloud:spring-cloud-dependencies$$"
-      KEY_SOFTWARE_RULES_6_NAME: "Spring Cloud"
-      KEY_SOFTWARE_RULES_7_SOFTWARE_NAME_PATTERN: "^org.projectlombok:lombok$$"
-      KEY_SOFTWARE_RULES_7_NAME: "Lombok"
-      KEY_SOFTWARE_RULES_8_SOFTWARE_NAME_PATTERN: "^org.jetbrains.kotlin:kotlin-bom$$"
-      KEY_SOFTWARE_RULES_8_NAME: "Kotlin"
-      KEY_SOFTWARE_RULES_9_SOFTWARE_NAME_PATTERN: "^io.micronaut:micronaut-bom$$"
-      KEY_SOFTWARE_RULES_9_NAME: "Micronaut"
-      KEY_SOFTWARE_RULES_10_SOFTWARE_NAME_PATTERN: "^aws-cdk$$"
-      KEY_SOFTWARE_RULES_10_NAME: "AWS CDK"
-      KEY_SOFTWARE_RULES_11_SOFTWARE_NAME_PATTERN: "^aws-sdk$$"
-      KEY_SOFTWARE_RULES_11_NAME: "AWS SDK"
-      KEY_SOFTWARE_RULES_12_SOFTWARE_NAME_PATTERN: "^vue$$"
-      KEY_SOFTWARE_RULES_12_NAME: "Vue"
-      KEY_SOFTWARE_RULES_13_SOFTWARE_NAME_PATTERN: "^nuxt$$"
-      KEY_SOFTWARE_RULES_13_NAME: "Nuxt"
-      KEY_SOFTWARE_RULES_14_SOFTWARE_NAME_PATTERN: "^react$$"
-      KEY_SOFTWARE_RULES_14_NAME: "React"
-      KEY_SOFTWARE_RULES_15_SOFTWARE_NAME_PATTERN: "^next$$"
-      KEY_SOFTWARE_RULES_15_NAME: "Next.js"
-      KEY_SOFTWARE_RULES_16_SOFTWARE_NAME_PATTERN: "^@angular/core$$"
-      KEY_SOFTWARE_RULES_16_NAME: "Angular"
+      #PLUGINS_KEY_SOFTWARE_DEFAULT_RULES_ENABLED: "false"
+      #PLUGINS_KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
+      #PLUGINS_KEY_SOFTWARE_RULES_1_NAME: "Spring Boot"
+      #PLUGINS_KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN: "^aws-sdk$$"
+      #PLUGINS_KEY_SOFTWARE_RULES_2_NAME: "AWS SDK"
+      #PLUGINS_KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN: "^react$$"
+      #PLUGINS_KEY_SOFTWARE_RULES_3_NAME: "React"
 
       # SonarQube (Optional)
-      SONARQUBE_BASE_URL: https://sonarcloud.io
-      SONARQUBE_ORGANIZATIONS_0: kronicle-tech
-
-      # OpenAPI spec served by this service to describe its service endpoints
-      OPENAPI_SPEC_CLEAR_EXISTING_SERVERS: "true"
-      OPENAPI_SPEC_SERVERS_0_DESCRIPTION: The demo instance of Kronicle Service
+      PLUGINS_SONARQUBE_BASE_URL: https://sonarcloud.io
+      PLUGINS_SONARQUBE_ORGANIZATIONS_0: kronicle-tech
     ports:
       - "8090:8090"
       - "8091:8091"
