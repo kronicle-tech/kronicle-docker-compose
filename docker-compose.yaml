@@ -1,9 +1,9 @@
 version: "2.4"
 services:
   kronicle-app:
-    image: ghcr.io/kronicle-tech/kronicle-app:0.1.154-pre-release
+    image: ghcr.io/kronicle-tech/kronicle-app:0.1.160
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
-    #image: public.ecr.aws/v1k6a4j2/kronicle-app:0.1.154-pre-release
+    #image: public.ecr.aws/v1k6a4j2/kronicle-app:0.1.160
     environment:
       # URL of kronicle-service, when called server-side from this web app
       SERVER_SIDE_SERVICE_BASE_URL: http://kronicle-service:8090
@@ -13,9 +13,9 @@ services:
       - kronicle-service
 
   kronicle-service:
-    image: ghcr.io/kronicle-tech/kronicle-service:0.1.154-pre-release
+    image: ghcr.io/kronicle-tech/kronicle-service:0.1.160
     # The image is also available via Amazon ECR Public, which can be used when deploying to AWS
-    #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.154-pre-release
+    #image: public.ecr.aws/v1k6a4j2/kronicle-service:0.1.160
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
 
