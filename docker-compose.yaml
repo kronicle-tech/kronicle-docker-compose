@@ -19,19 +19,27 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
 
-      # GitHub (Optional)
-      PLUGINS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
-      PLUGINS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
       REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
       REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
+      REPO_FINDERS_IGNORED_REPOS_2_URL: https://github.com/kronicle-tech/kronicle-argocd-config.git
 
-      # Increased logging (Optional)
-      #LOGGING_LEVEL_TECH_KRONICLE: DEBUG
+      # GitHub (Optional)
+      PLUGINS_GITHUB_ENABLED: true
+      PLUGINS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
+      PLUGINS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
 
       # GitLab (Optional)
+      #PLUGINS_GITLAB_ENABLED: true
       #PLUGINS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
       #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
       #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
+
+      # AWS (Optional)
+      #PLUGINS_AWS_ENABLED: true
+      #PLUGINS_AWS_PROFILES_0_ACCESS_KEY_ID: example-access-key-id
+      #PLUGINS_AWS_PROFILES_0_SECRET_ACCESS_KEY: example-secret-access-key
+      #PLUGINS_AWS_PROFILES_0_REGIONS_0: us-west-1
+      #PLUGINS_AWS_DETAILED_COMPONENT_DESCRIPTIONS: true
 
       # Key Software Rules (Optional)
       # The SOFTWARE_NAME_PATTERN environment variables contain regex patterns.  The `$$` is Docker Compose syntax for
@@ -45,8 +53,12 @@ services:
       #PLUGINS_KEY_SOFTWARE_RULES_3_NAME: "React"
 
       # SonarQube (Optional)
+      PLUGINS_SONARQUBE_ENABLED: true
       PLUGINS_SONARQUBE_BASE_URL: https://sonarcloud.io
       PLUGINS_SONARQUBE_ORGANIZATIONS_0: kronicle-tech
+
+      # Increased logging (Optional)
+      #LOGGING_LEVEL_TECH_KRONICLE: DEBUG
     ports:
       - "8090:8090"
       - "8091:8091"
