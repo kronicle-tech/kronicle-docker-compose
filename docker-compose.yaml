@@ -19,46 +19,60 @@ services:
     environment:
       SPRING_PROFILES_ACTIVE: docker-compose
 
-      REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
-      REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
-      REPO_FINDERS_IGNORED_REPOS_2_URL: https://github.com/kronicle-tech/kronicle-argocd-config.git
-
-      # GitHub (Optional)
+# GitHub plugin (Optional)
       PLUGINS_GITHUB_ENABLED: true
       PLUGINS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
       PLUGINS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
 
-      # GitLab (Optional)
-      #PLUGINS_GITLAB_ENABLED: true
-      #PLUGINS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
-      #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
-      #PLUGINS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
+# GitLab plugin (Optional)
+#      PLUGINS_GITLAB_ENABLED: true
+#      PLUGINS_GITLAB_HOSTS_0_BASE_URL: https://gitlab.com
+#      PLUGINS_GITLAB_HOSTS_0_GROUPS_0_PATH: kronicle-tech
+#      PLUGINS_GITLAB_HOSTS_0_GROUPS_0_ACCESS_TOKEN_VALUE: example-access-token
 
-      # AWS (Optional)
-      #PLUGINS_AWS_ENABLED: true
-      #PLUGINS_AWS_PROFILES_0_ACCESS_KEY_ID: example-access-key-id
-      #PLUGINS_AWS_PROFILES_0_SECRET_ACCESS_KEY: example-secret-access-key
-      #PLUGINS_AWS_PROFILES_0_REGIONS_0: us-west-1
-      #PLUGINS_AWS_DETAILED_COMPONENT_DESCRIPTIONS: true
+# Git credentials (Optional)
+# If using the GitHub, GitLab and/or Bitbucket Server plugins, you'll also need to provide the Git plugin with
+# (read-only) credentials for your Git repos
+#      PLUGINS_GIT_HOSTS_0_HOST: github.com
+#      PLUGINS_GIT_HOSTS_0_USERNAME: example-username
+#      PLUGINS_GIT_HOSTS_0_PASSWORD: example-access-token
 
-      # Key Software Rules (Optional)
-      # The SOFTWARE_NAME_PATTERN environment variables contain regex patterns.  The `$$` is Docker Compose syntax for
-      # escaping a `$` character
-      #PLUGINS_KEY_SOFTWARE_DEFAULT_RULES_ENABLED: "false"
-      #PLUGINS_KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
-      #PLUGINS_KEY_SOFTWARE_RULES_1_NAME: "Spring Boot"
-      #PLUGINS_KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN: "^aws-sdk$$"
-      #PLUGINS_KEY_SOFTWARE_RULES_2_NAME: "AWS SDK"
-      #PLUGINS_KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN: "^react$$"
-      #PLUGINS_KEY_SOFTWARE_RULES_3_NAME: "React"
+# Repos that you want Kronicle to ignore
+      REPO_FINDERS_IGNORED_REPOS_0_URL: https://github.com/kronicle-tech/kronicle-metadata-repo-template.git
+      REPO_FINDERS_IGNORED_REPOS_1_URL: https://github.com/kronicle-tech/kronicle-metadata-codebase-template.git
+      REPO_FINDERS_IGNORED_REPOS_2_URL: https://github.com/kronicle-tech/kronicle-argocd-config.git
 
-      # SonarQube (Optional)
-      PLUGINS_SONARQUBE_ENABLED: true
-      PLUGINS_SONARQUBE_BASE_URL: https://sonarcloud.io
-      PLUGINS_SONARQUBE_ORGANIZATIONS_0: kronicle-tech
+# AWS plugin (Optional)
+#      PLUGINS_AWS_ENABLED: true
+#      PLUGINS_AWS_PROFILES_0_ACCESS_KEY_ID: example-access-key-id
+#      PLUGINS_AWS_PROFILES_0_SECRET_ACCESS_KEY: example-secret-access-key
+#      PLUGINS_AWS_PROFILES_0_REGIONS_0: us-west-1
+#      PLUGINS_AWS_DETAILED_COMPONENT_DESCRIPTIONS: true
 
-      # Increased logging (Optional)
-      #LOGGING_LEVEL_TECH_KRONICLE: DEBUG
+# Datadog plugin (optional)
+#      PLUGINS_DATADOG_ENABLED: true
+#      PLUGIN_DATADOG_API_KEY: example-api-key
+#      PLUGIN_DATADOG_APPLICATION_KEY: example-application-key
+#      PLUGIN_DATADOG_DEPENDENCIES_ENVIRONMENTS_0: production
+
+# Key Software Rules plugin (Optional)
+# The SOFTWARE_NAME_PATTERN environment variables contain regex patterns.  The `$$` is Docker Compose syntax for
+# escaping a `$` character
+#      PLUGINS_KEY_SOFTWARE_DEFAULT_RULES_ENABLED: "false"
+#      PLUGINS_KEY_SOFTWARE_RULES_1_SOFTWARE_NAME_PATTERN: "^org.springframework.boot:"
+#      PLUGINS_KEY_SOFTWARE_RULES_1_NAME: "Spring Boot"
+#      PLUGINS_KEY_SOFTWARE_RULES_2_SOFTWARE_NAME_PATTERN: "^aws-sdk$$"
+#      PLUGINS_KEY_SOFTWARE_RULES_2_NAME: "AWS SDK"
+#      PLUGINS_KEY_SOFTWARE_RULES_3_SOFTWARE_NAME_PATTERN: "^react$$"
+#      PLUGINS_KEY_SOFTWARE_RULES_3_NAME: "React"
+
+# SonarQube plugin (Optional)
+#      PLUGINS_SONARQUBE_ENABLED: true
+#      PLUGINS_SONARQUBE_BASE_URL: https://sonarcloud.io
+#      PLUGINS_SONARQUBE_ORGANIZATIONS_0: kronicle-tech
+
+# Increased logging (Optional)
+#      LOGGING_LEVEL_TECH_KRONICLE: DEBUG
     ports:
       - "8090:8090"
       - "8091:8091"
