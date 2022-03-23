@@ -1,11 +1,11 @@
 # Kronicle Docker Compose
 
-This repo contains Docker Compose files for running a demo instance of Kronicle.  
+This repo contains Docker Compose files for running [Kronicle](https://kronicle.tech) on a local machine.  
 
 In order to use this repo, you need to have [Docker for Desktop](https://www.docker.com/products/docker-desktop) 
 installed.  
 
-Steps to use the Docker Compose files:
+Steps to use the Docker Compose file:
 
 ```
 $ git clone https://github.com/kronicle-tech/kronicle-docker-compose.git
