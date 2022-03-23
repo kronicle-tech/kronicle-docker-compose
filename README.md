@@ -16,7 +16,7 @@ $ docker-compose up
 When the commands above have run successfully, you should then be able to open the http://localhost:3000 page in your 
 browser.  
 
-Note: It can take a few seconds for Kronicle's backend service to start up, so if you get an error when first opening
+Note: It can take 30 seconds or so for Kronicle's backend service to start up, so if you get an error when first opening
 http://localhost:3000, refreshing the page after a few seconds should resolve the error
 
 Kronicle's web service should also be accessible via http://localhost:3000/api/v1/components
