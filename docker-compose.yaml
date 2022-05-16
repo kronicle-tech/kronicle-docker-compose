@@ -22,7 +22,6 @@ services:
 # GitHub plugin (Optional)
       PLUGINS_GITHUB_ENABLED: true
       PLUGINS_GITHUB_ORGANIZATIONS_0_ACCOUNT_NAME: kronicle-tech
-      PLUGINS_GITHUB_ORGANIZATIONS_1_ACCOUNT_NAME: kronicle-computers
 
 # GitLab plugin (Optional)
 #      PLUGINS_GITLAB_ENABLED: true
