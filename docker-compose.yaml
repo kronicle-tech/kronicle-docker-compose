@@ -71,7 +71,7 @@ services:
 #      PLUGINS_SONARQUBE_ORGANIZATIONS_0: kronicle-tech
 
 # Increased logging (Optional)
-#      LOGGING_LEVEL_TECH_KRONICLE: DEBUG
+      LOGGING_LEVEL_TECH_KRONICLE: DEBUG
     ports:
       - "8090:8090"
       - "8091:8091"
